@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Buyana — motion graphics and product design portfolio." />
+  <title>Buyana — Motion Graphics Artist</title>
+  <style>
+    :root { --bg:#f5f5f5; --ink:#222; --muted:#777; --line:#343434; --content:1080px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:Arial, Helvetica, sans-serif; font-size:16px; }
+    a { color:inherit; }
+    button, input, textarea, select { font:inherit; }
+    button { cursor:pointer; }
+    .shell { width:min(calc(100% - 104px),var(--content)); margin-inline:auto; }
+    header { height:124px; display:flex; align-items:flex-start; padding-top:30px; justify-content:space-between; }
+    .logo { display:inline-flex; width:55px; height:30px; border:2px solid currentColor; border-radius:50%; justify-content:center; align-items:center; font-size:19px; font-family:Georgia,serif; font-style:italic; text-decoration:none; line-height:1; letter-spacing:-4px; padding-right:4px; transform:scaleY(.7); }
+    nav { display:flex; gap:28px; font-size:13px; }
+    nav a { text-decoration:none; }
+    nav a:hover, a:hover { opacity:.65; }
+    .hero { display:grid; grid-template-columns:1.08fr 1fr; align-items:center; gap:38px; min-height:440px; padding-bottom:60px; }
+    .hero h1 { font-size:clamp(30px, 4.5vw, 58px); letter-spacing:-.035em; line-height:1.15; margin:0; font-weight:750; }
+    .hero-photo { width:100%; height:430px; background:#fff; object-fit:cover; object-position:center; }
+    section { scroll-margin-top:35px; }
+    .section-heading { border-bottom:1px solid var(--line); font-size:29px; font-weight:400; padding-bottom:20px; margin:0 0 62px; }
+    .section-heading.strong { border-bottom:6px solid #151515; padding-bottom:14px; margin-bottom:66px; font-size:34px; }
+    .projects { margin-top:106px; }
+    .project-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:27px; }
+    .project-card { min-width:0; }
+    .project-title { font-size:15px; margin:0 0 15px; }
+    .project-img { display:block; width:100%; aspect-ratio: 2 / 3; object-fit:cover; border-radius:2px; transition:transform .25s; }
+    .project-img:hover { transform:translateY(-5px); }
+    .project-actions { display:flex; justify-content:flex-end; margin-top:22px; }
+    .round-btn { border:1px solid var(--ink); background:transparent; color:var(--ink); width:40px; height:40px; border-radius:50%; display:inline-grid; place-items:center; transition:background .2s,color .2s; }
+    .round-btn:hover { background:var(--ink); color:white; }
+    .about { margin-top:116px; }
+    .about-columns { display:grid; grid-template-columns:1fr 1fr; gap:88px; }
+    .about-copy { max-width:440px; line-height:1.32; }
+    .about-copy p:first-child { margin-top:0; }
+    .about-copy p + p { margin-top:32px; }
+    .services-title { margin:0 0 20px; }
+    .accordion-item { border-bottom:1px solid #777; }
+    .accordion-trigger { display:flex; justify-content:space-between; align-items:center; text-align:left; gap:15px; width:100%; padding:12px 0; border:0; background:transparent; }
+    .accordion-trigger .number { margin-right:16px; }
+    .accordion-trigger .arrow { transition:transform .2s; }
+    .accordion-trigger[aria-expanded="true"] .arrow { transform:rotate(180deg); }
+    .accordion-content { padding:3px 24px 15px 34px; font-size:13px; line-height:1.35; }
+    .accordion-content[hidden] { display:none; }
+    .skills { display:flex; gap:18px; flex-wrap:wrap; margin:115px 0 0; font-size:13px; }
+    .skills span:not(:last-child)::after { content:'·'; margin-left:18px; }
+    .testimonials { margin-top:140px; }
+    .testimonial-slider { min-height:236px; display:grid; grid-template-columns:45px 1fr 45px; align-items:center; gap:20px; padding:18px 70px 0; }
+    .testimonial { text-align:center; max-width:630px; margin-inline:auto; }
+    .testimonial blockquote { font-size:18px; line-height:1.34; margin:0 0 22px; }
+    .testimonial cite { font-size:13px; font-style:normal; }
+    .testimonial cite em { display:block; margin-top:5px; }
+    .contact { margin-top:112px; }
+    .contact-content { display:grid; grid-template-columns:1fr 1fr; gap:80px; padding:12px 0 70px; }
+    .contact-copy { max-width:420px; line-height:1.38; }
+    .contact-copy p + p { margin-top:30px; }
+    .contact-copy a { text-underline-offset:3px; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+    label { display:block; font-size:13px; margin-bottom:8px; }
+    .field { margin-bottom:20px; }
+    input, select, textarea { width:100%; background:transparent; border:1px solid #777; border-radius:0; padding:10px 12px; outline-offset:2px; font-size:13px; }
+    textarea { resize:vertical; min-height:112px; }
+    .submit { background:transparent; border:1px solid #444; padding:8px 23px; font-size:13px; }
+    .submit:hover { background:#222; color:white; }
+    .status { font-size:13px; margin:12px 0 0; }
+    .blogs { border-top:1px solid #333; padding-top:55px; margin-top:65px; }
+    .blogs h2 { text-align:center; font-size:20px; font-weight:400; margin:0 0 45px; }
+    .blog-grid { display:grid; grid-template-columns:repeat(3,1fr); max-width:850px; margin:auto; }
+    .blog { padding:8px 25px; font-size:13px; min-height:142px; }
+    .blog:not(:last-child) { border-right:1px solid #555; }
+    .blog h3 { font-size:13px; font-weight:400; line-height:1.45; margin:0 0 18px; }
+    .blog time { display:block; color:#777; margin-bottom:10px; font-size:11px; }
+    .blog a { font-size:12px; text-underline-offset:3px; }
+    .blog a span { text-decoration:none; margin-left:10px; }
+    .newsletter { margin-top:130px; border-top:2px dotted #555; padding:64px 20px 75px; text-align:center; }
+    .newsletter h2 { font-size:21px; font-weight:400; margin:0 0 14px; }
+    .newsletter p { max-width:360px; margin:0 auto 19px; color:#666; font-size:13px; line-height:1.4; }
+    .newsletter-form { display:flex; width:min(340px,100%); margin:auto; }
+    .newsletter-form input { min-width:0; flex:1; }
+    .newsletter-form button { width:60px; background:#444; color:white; border:1px solid #444; }
+    .newsletter .tiny { font-size:10px; color:#999; margin-top:18px; }
+    footer { border-top:1px solid #777; padding:30px 0; }
+    .footer-inner { display:flex; align-items:center; gap:25px; }
+    .copyright { font-size:11px; color:#999; flex:1; }
+    .socials { display:flex; gap:22px; }
+    .socials a { text-decoration:none; font-weight:bold; font-size:13px; }
+    @media(max-width:700px) {
+      .shell { width:min(calc(100% - 38px),var(--content)); }
+      header { height:84px; padding-top:18px; }
+      nav { gap:16px; }
+      .hero { grid-template-columns:1fr 1fr; gap:16px; min-height:290px; padding-bottom:0; }
+      .hero h1 { font-size:clamp(22px,4.4vw,32px); }
+      .hero-photo { height:260px; }
+      .projects { margin-top:85px; }
+      .section-heading { font-size:23px; margin-bottom:35px; }
+      .section-heading.strong { font-size:25px; border-bottom-width:4px; margin-bottom:38px; }
+      .project-grid { gap:12px; }
+      .project-title { font-size:11px; }
+      .round-btn { width:33px; height:33px; }
+      .about { margin-top:85px; }
+      .about-columns { gap:24px; }
+      .about-copy,.services { font-size:13px; }
+      .accordion-content { padding-left:15px; font-size:11px; }
+      .skills { margin-top:70px; font-size:11px; gap:8px; }
+      .skills span:not(:last-child)::after { margin-left:8px; }
+      .testimonials { margin-top:95px; }
+      .testimonial-slider { padding:10px 0; grid-template-columns:33px 1fr 33px; gap:10px; min-height:210px; }
+      .testimonial blockquote { font-size:14px; }
+      .contact { margin-top:85px; }
+      .contact-content { gap:22px; }
+      .contact-copy { font-size:13px; }
+      .form-row { gap:10px; }
+      .blogs { margin-top:30px; }
+      .blog { padding:6px 12px; }
+      .newsletter { margin-top:85px; }
+    }
+    @media(max-width:480px) {
+      .hero { grid-template-columns:1fr; }
+      .hero h1 { font-size:36px; }
+      .hero-photo { width:100%; height:270px; object-fit:contain; }
+      .project-grid { grid-template-columns:1fr 1fr; row-gap:30px; }
+      .about-columns, .contact-content { grid-template-columns:1fr; gap:35px; }
+      .testimonial-slider { gap:5px; }
+      .blog-grid { grid-template-columns:1fr; }
+      .blog { border-right:0 !important; border-bottom:1px solid #ccc; min-height:0; padding:22px 0; }
+      .footer-inner { flex-wrap:wrap; }
+    }
+    @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none !important; } }
+  </style>
+</head>
+<body>
+  <header class="shell">
+    <a href="#top" class="logo" aria-label="Back to top">ar</a>
+    <nav aria-label="Main navigation"><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+  </header>
+  <main id="top">
+    <section class="hero shell" aria-label="Introduction">
+      <h1>I’m Buyana,<br>a motion graphics artist based in Nicosia.</h1>
+      <img class="hero-photo" src="assets/hero-bird.png" alt="A light-colored bird of prey" />
+    </section>
+    <section class="projects shell" id="work">
+      <h2 class="section-heading strong">Projects</h2>
+      <div class="project-grid" id="project-grid">
+        <article class="project-card"><p class="project-title">01 Example</p><img class="project-img" src="assets/project-1.png" alt="Blue flowing abstract motion graphic" /></article>
+        <article class="project-card"><p class="project-title">02 Example</p><img class="project-img" src="assets/project-2.png" alt="Metallic orange and silver abstract design" /></article>
+        <article class="project-card"><p class="project-title">03 Example</p><img class="project-img" src="assets/project-3.png" alt="Glowing neon purple and orange geometric abstract design" /></article>
+      </div>
+      <div class="project-actions"><button class="round-btn" type="button" id="more-projects" aria-label="Show more projects">+</button></div>
+    </section>
+    <section class="about shell" id="about">
+      <h2 class="section-heading">About Me</h2>
+      <div class="about-columns">
+        <div class="about-copy">
+          <p>I'm a product designer working on various projects on a wide range of clients. My skillset lies on creating branding packages &amp; websites to deliver the full online experience for new and also veteran businesses.</p>
+          <p>You can often find me creating videos about design over on YouTube, or sharing my thoughts on my podcast, Dialogue With Designers. I'm passionate about giving back and teaching what I know to the next generation of designers.</p>
+        </div>
+        <div class="services">
+          <p class="services-title">Your one stop shop for:</p>
+          <div class="accordion-item">
+            <button class="accordion-trigger" type="button" aria-expanded="true" aria-controls="service-1"><span><span class="number">①</span>Branding / Logo</span><span class="arrow">⌃</span></button>
+            <div id="service-1" class="accordion-content">From your first idea to a complete visual identity, I design memorable brands that work across digital and print.</div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="service-2"><span><span class="number">②</span>Packaging</span><span class="arrow">⌃</span></button>
+            <div id="service-2" class="accordion-content" hidden>Thoughtful, distinctive packaging design with an eye for materials, typography and shelf presence.</div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="service-3"><span><span class="number">③</span>Websites</span><span class="arrow">⌃</span></button>
+            <div id="service-3" class="accordion-content" hidden>Responsive, accessible websites built to look great and feel natural on every screen.</div>
+          </div>
+        </div>
+      </div>
+      <div class="skills" aria-label="Tools and software"><span>Illustrator</span><span>Webflow</span><span>Figma</span><span>Indesign</span><span>Premiere Pro</span><span>Cinema 4D</span><span>Sketch</span><span>Photoshop</span></div>
+    </section>
+    <section class="testimonials shell" aria-label="Client testimonials">
+      <h2 class="section-heading">What Clients Say</h2>
+      <div class="testimonial-slider">
+        <button class="round-btn" id="testimonial-prev" type="button" aria-label="Previous testimonial">‹</button>
+        <div class="testimonial" aria-live="polite"><blockquote id="quote">“I rehired Arnau to do some additional design work for my private label brand. Again, he was creative and efficient in bringing my ideas to fruition. Thanks Arnau”</blockquote><cite id="quote-author">— Ronald Weasley <em>CEO</em></cite></div>
+        <button class="round-btn" id="testimonial-next" type="button" aria-label="Next testimonial">›</button>
+      </div>
+    </section>
+    <section class="contact shell" id="contact">
+      <h2 class="section-heading">Say Hello</h2>
+      <div class="contact-content">
+        <div class="contact-copy"><p>Looking to start a new project or just want to say hi? Send me an email and I’ll do my best to reply within 24 hrs!</p><p>If contact forms aren’t your thing... send me an email at<br><a href="mailto:hello@arnau.design">hello@arnau.design</a></p></div>
+        <form id="contact-form">
+          <div class="field"><label for="first-name">Name *</label><div class="form-row"><input id="first-name" name="firstName" placeholder="First Name" required /><input id="last-name" name="lastName" placeholder="Last Name" aria-label="Last Name" required /></div></div>
+          <div class="form-row"><div class="field"><label for="inquiry">Inquiry *</label><select id="inquiry" name="inquiry" required><option value="">Select inquiry</option><option>Collab/Client</option><option>General question</option><option>Other</option></select></div><div class="field"><label for="email">Email *</label><input id="email" name="email" type="email" placeholder="hello@gmail.com" required /></div></div>
+          <div class="field"><label for="message">Message *</label><textarea id="message" name="message" placeholder="Hello..." required></textarea></div>
+          <button class="submit" type="submit">Send</button><p class="status" id="contact-status" role="status"></p>
+        </form>
+      </div>
+    </section>
+    <section class="blogs shell" aria-label="Recent blog posts">
+      <h2>Recent Blogs</h2>
+      <div class="blog-grid">
+        <article class="blog"><h3>The ULTIMATE Figma UI Kit (Tailwind+Figma)</h3><time datetime="2024-02-21">24.2.21</time><a href="#contact">See Now <span>↗</span></a></article>
+        <article class="blog"><h3>The ULTIMATE Figma UI Kit (Tailwind+Figma)</h3><time datetime="2024-02-21">24.2.21</time><a href="#contact">See Now <span>↗</span></a></article>
+        <article class="blog"><h3>The ULTIMATE Figma UI Kit (Tailwind+Figma)</h3><time datetime="2024-02-21">24.2.21</time><a href="#contact">See Now <span>↗</span></a></article>
+      </div>
+    </section>
+    <section class="newsletter" aria-label="Newsletter signup">
+      <h2>Join the Newsletter!</h2><p>You'll receive an email every once in a while about new projects, courses, and videos!</p>
+      <form class="newsletter-form" id="newsletter-form"><input type="email" id="newsletter-email" aria-label="Email address" placeholder="name@example.com" required /><button type="submit" aria-label="Subscribe">➜</button></form>
+      <p class="status" id="newsletter-status" role="status"></p><p class="tiny">We'll never share your details. See our Privacy Policy</p>
+    </section>
+  </main>
+  <footer><div class="shell footer-inner"><a href="#top" class="logo" aria-label="Back to top">ar</a><span class="copyright">© 2026 Arnau Ros LLC. All rights reserved.</span><div class="socials"><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">♥</a><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">◎</a></div></div></footer>
+  <script>
+    document.querySelectorAll('.accordion-trigger').forEach(button => {
+      button.addEventListener('click', () => {
+        const isOpen = button.getAttribute('aria-expanded') === 'true';
+        document.querySelectorAll('.accordion-trigger').forEach(other => {
+          other.setAttribute('aria-expanded', 'false');
+          document.getElementById(other.getAttribute('aria-controls')).hidden = true;
+        });
+        if (!isOpen) {
+          button.setAttribute('aria-expanded', 'true');
+          document.getElementById(button.getAttribute('aria-controls')).hidden = false;
+        }
+      });
+    });
+    const testimonials = [
+      { quote:'“I rehired Arnau to do some additional design work for my private label brand. Again, he was creative and efficient in bringing my ideas to fruition. Thanks Arnau”', author:'Ronald Weasley', role:'CEO' },
+      { quote:'“A fantastic creative partner who brought fresh ideas and attention to every detail of our project.”', author:'Happy Client', role:'Founder' },
+      { quote:'“Professional, thoughtful and a pleasure to work with from start to finish.”', author:'Another Client', role:'Creative Director' }
+    ];
+    let currentTestimonial = 0;
+    function renderTestimonial() {
+      const t = testimonials[currentTestimonial];
+      document.getElementById('quote').textContent = t.quote;
+      document.getElementById('quote-author').innerHTML = '— ' + t.author + ' <em>' + t.role + '</em>';
+    }
+    document.getElementById('testimonial-prev').addEventListener('click', () => { currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length; renderTestimonial(); });
+    document.getElementById('testimonial-next').addEventListener('click', () => { currentTestimonial = (currentTestimonial + 1) % testimonials.length; renderTestimonial(); });
+    document.getElementById('more-projects').addEventListener('click', () => {
+      const grid = document.getElementById('project-grid');
+      const button = document.getElementById('more-projects');
+      if (button.dataset.added) { grid.querySelectorAll('.extra-project').forEach(el => el.remove()); delete button.dataset.added; button.textContent = '+'; return; }
+      [['04','project-3.png'],['05','project-1.png'],['06','project-2.png']].forEach(([num,img]) => {
+        const card = document.createElement('article'); card.className = 'project-card extra-project';
+        card.innerHTML = `<p class="project-title">${num} Example</p><img class="project-img" src="assets/${img}" alt="Abstract motion graphics project" />`;
+        grid.appendChild(card);
+      });
+      button.dataset.added = 'true'; button.textContent = '−';
+    });
+    document.getElementById('contact-form').addEventListener('submit', event => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const data = new FormData(form);
+      const subject = encodeURIComponent(`${data.get('inquiry')} inquiry from ${data.get('firstName')} ${data.get('lastName')}`);
+      const body = encodeURIComponent(`${data.get('message')}\n\nFrom: ${data.get('firstName')} ${data.get('lastName')}\nEmail: ${data.get('email')}`);
+      document.getElementById('contact-status').textContent = 'Opening your email app to send your message…';
+      window.location.href = `mailto:hello@arnau.design?subject=${subject}&body=${body}`;
+    });
+    document.getElementById('newsletter-form').addEventListener('submit', event => {
+      event.preventDefault();
+      document.getElementById('newsletter-status').textContent = 'Demo form only — connect a newsletter service to collect signups.';
+    });
+  </script>
+</body>
+</html>
